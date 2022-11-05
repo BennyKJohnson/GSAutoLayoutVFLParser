@@ -81,20 +81,25 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
 
 -(void)addFormattingConstraints: (NSView*)lastView
 {
-    if (!(self.options & NSLayoutFormatAlignmentMask)) {
+    BOOL hasFormatOptions = (self.options & NSLayoutFormatAlignmentMask) > 0;
+    if (!hasFormatOptions) {
          return;
      }
+    [self assertHasValidFormatLayoutOptions];
+    
+    NSArray *attributes = [self layoutAttributesForLayoutFormatOptions:self.options];
+    for (NSNumber *layoutAttribute in attributes) {
+        NSLayoutConstraint *formatConstraint = [NSLayoutConstraint constraintWithItem:lastView  attribute:[layoutAttribute integerValue] relatedBy:NSLayoutRelationEqual toItem:view attribute:[layoutAttribute integerValue] multiplier:1.0 constant:0];
+        [layoutFormatConstraints addObject:formatConstraint];
+    }
+}
+
+-(void)assertHasValidFormatLayoutOptions
+{
     if (isVerticalOrientation && [self isVerticalEdgeFormatLayoutOption: self.options]) {
         [self failParseWithMessage:@"A vertical alignment format option cannot be used with a vertical layout"];
     } else if (!isVerticalOrientation && ![self isVerticalEdgeFormatLayoutOption:self.options]) {
         [self failParseWithMessage:@"A horizontal alignment format option cannot be used with a horizontal layout"];
-    }
-    
-    NSArray *attributes = [self layoutAttributesForLayoutFormatOptions:self.options];
-    for (NSNumber *layoutAttribute in attributes) {
-        NSLayoutAttribute attribute = [layoutAttribute integerValue];
-        NSLayoutConstraint *formatConstraint = [NSLayoutConstraint constraintWithItem:lastView  attribute:attribute relatedBy:NSLayoutRelationEqual toItem:view attribute:attribute multiplier:1.0 constant:0];
-        [layoutFormatConstraints addObject:formatConstraint];
     }
 }
          
@@ -118,6 +123,23 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
     return viewConstraints;
 }
 
+-(NSView*)parseViewName
+{
+    NSString *viewName = nil;
+    NSCharacterSet *viewTerminators = [NSCharacterSet characterSetWithCharactersInString:@"]("];
+    [scanner scanUpToCharactersFromSet:viewTerminators intoString:&viewName];
+        
+    if (viewName == nil) {
+        [self failParseWithMessage:@"Failed to parse view name"];
+    }
+    
+    if (![self isValidIdentifer:viewName]) {
+        [self failParseWithMessage:@"Invalid view name. A view name must be a valid C identifier and may only contain letters, numbers and underscores"];
+    }
+    
+    return [self resolveViewWithIdentifier:viewName];
+}
+
 -(BOOL)isVerticalEdgeFormatLayoutOption: (NSLayoutFormatOptions)options
 {
     if (options & NSLayoutFormatAlignAllTop) {
@@ -137,47 +159,6 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
     }
     
     return NO;
-}
-
--(NSArray*)layoutAttributesForLayoutFormatOptions: (NSLayoutFormatOptions)options {
-    NSMutableArray *attributes = [NSMutableArray array];
-    
-    if (options & NSLayoutFormatAlignAllLeft) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeLeft]];
-    }
-    if (options & NSLayoutFormatAlignAllRight) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeRight]];
-    }
-    if (options & NSLayoutFormatAlignAllTop) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeTop]];
-    }
-    if (options & NSLayoutFormatAlignAllBottom) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeBottom]];
-    }
-    if (options & NSLayoutFormatAlignAllLeading) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeLeading]];
-    }
-    if (options & NSLayoutFormatAlignAllTrailing) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeTrailing]];
-    }
-    if (options & NSLayoutFormatAlignAllCenterX) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeCenterX]];
-    }
-    if (options & NSLayoutFormatAlignAllCenterY) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeCenterY]];
-    }
-    if (options & NSLayoutFormatAlignAllBaseline) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeBaseline]];
-    }
-    if (options & NSLayoutFormatAlignAllFirstBaseline) {
-        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeFirstBaseline]];
-    }
-    
-    if ([attributes count] == 0) {
-        [self failParseWithMessage:@"Unrecognized layout formatting option"];
-    }
-    
-    return attributes;
 }
 
 -(void)addViewSpacingConstraint: (NSNumber*)spacing previousView: (NSView*)previousView
@@ -280,8 +261,8 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
 
 -(NSNumber*)parseLeadingSuperViewConnection
 {
-    if (![scanner
-         scanString:@"|" intoString:nil]) {
+    BOOL foundSuperview = [scanner scanString:@"|" intoString:nil];
+    if (!foundSuperview) {
         return nil;
     }
     createLeadingConstraintToSuperview = YES;
@@ -314,33 +295,30 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
     if (scanConstantResult) {
         return [NSNumber numberWithDouble:constant];
     } else {
-        NSString *metricName = [self parseMetricName];
-        if (metricName == nil) {
+        NSString *metricName = nil;
+        NSCharacterSet *simplePredicateTerminatorsCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"-[|"];
+        BOOL didParseMetricName = [scanner scanUpToCharactersFromSet:simplePredicateTerminatorsCharacterSet intoString:&metricName];
+        if (!didParseMetricName) {
             return nil;
         }
+        if (![self isValidIdentifer:metricName]) {
+            [self failParseWithMessage:@"Invalid metric identifier. Metric identifiers must be a valid C identifier and may only contain letters, numbers and underscores"];
+        }
+        
         NSNumber *metric = [self resolveMetricWithIdentifier:metricName];
         return metric;
     }
 }
 
--(NSView*)parseViewName
-{
-    NSString *viewName = [self parseIdentifier];
-    if (viewName == nil) {
-        [self failParseWithMessage:@"Failed to parse view name"];
-    }
-    return [self resolveViewWithIdentifier:viewName];
-}
-
 -(NSArray*)parsePredicateList
 {
-    if (![scanner scanString:@"(" intoString:nil]) {
+    BOOL startsWithPredicateList = [scanner scanString:@"(" intoString:nil];
+    if (!startsWithPredicateList) {
         return [NSArray array];
     }
-    
-    BOOL shouldParsePredicate = YES;
-    
+        
     NSMutableArray *viewPredicateConstraints = [NSMutableArray array];
+    BOOL shouldParsePredicate = YES;
     while (shouldParsePredicate) {
         GSObjectOfPredicate *predicate = [self parseObjectOfPredicate];
         [viewPredicateConstraints addObject:[self createConstraintFromParsedPredicate:predicate]];
@@ -382,14 +360,19 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
     BOOL scanConstantResult = [scanner scanDouble:&parsedConstant];
     if (!scanConstantResult) {
         NSString *identiferName = [self parseIdentifier];
+        if (![self isValidIdentifer:identiferName]) {
+            [self failParseWithMessage:@"Invalid metric or view identifier. Metric/View identifiers must be a valid C identifier and may only contain letters, numbers and underscores"];
+        }
+        
         NSNumber *metric = [self.metrics objectForKey:identiferName];
-        if (metric) {
+        if (metric != nil) {
             parsedConstant = [metric doubleValue];
         } else if ([self.views objectForKey:identiferName]) {
             parsedConstant = 0;
             predicatedView = [self.views objectForKey:identiferName];
         } else {
-            [self failParseWithMessage:@"Failed to find constant or metric"];
+            NSString *message = [NSString stringWithFormat:@"Failed to find constant or metric for identifier '%@'", identiferName];
+            [self failParseWithMessage:message];
         }
     }
     
@@ -425,14 +408,7 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
         return nil;
     }
     
-    CGFloat constant = [self parseConstant];
-    return [NSNumber numberWithDouble:constant];
-}
-
--(void)failParseWithMessage: (NSString*)parseErrorMessage
-{
-    NSException *parseException = [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"Unable to parse constraint format: %@", parseErrorMessage] userInfo:nil];
-    [parseException raise];
+    return [self parseConstant];
 }
 
 -(NSNumber*)resolveMetricWithIdentifier: (NSString*)identifier
@@ -453,42 +429,38 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
     return view;
 }
 
--(CGFloat)parseConstant
+-(NSNumber*)parseConstant
 {
     CGFloat constant;
     BOOL scanConstantResult = [scanner scanDouble:&constant];
-    if (!scanConstantResult) {
-        @try {
-            NSString *metricName = [self parseIdentifier];
-            NSNumber *metric = [self resolveMetricWithIdentifier:metricName];
-            return [metric doubleValue];
-        } @catch (id error) {
-            [self failParseWithMessage:@"Failed to find constant or metric"];
-        }
+    if (scanConstantResult) {
+        return [NSNumber numberWithFloat:constant];
     }
-    return constant;
+    
+    NSString *metricName = [self parseIdentifier];
+    if (![self isValidIdentifer:metricName]) {
+        [self failParseWithMessage:@"Invalid metric identifier. Metric identifiers must be a valid C identifier and may only contain letters, numbers and underscores"];
+    }
+    
+    return [self resolveMetricWithIdentifier:metricName];
 }
 
 -(NSString*)parseIdentifier
 {
-    NSString *identifier = nil;
-    [scanner scanCharactersFromSet:[NSCharacterSet alphanumericCharacterSet] intoString:&identifier];
+    NSString *identifierName = nil;
+    NSCharacterSet *identifierTerminators = [NSCharacterSet characterSetWithCharactersInString:@"),"];
+    BOOL scannedIdentifier = [scanner scanUpToCharactersFromSet:identifierTerminators intoString:&identifierName];
+    if (!scannedIdentifier) {
+        [self failParseWithMessage:@"Failed to find constant or metric"];
+    }
     
-    return identifier;
-}
-
--(NSString*)parseMetricName
-{
-    NSString *identifier = nil;
-    [scanner scanCharactersFromSet:[NSCharacterSet alphanumericCharacterSet] intoString:&identifier];
-    return identifier;
+    return identifierName;
 }
 
 -(void)parseViewOpen
 {
     NSCharacterSet *openViewIdentifier = [NSCharacterSet characterSetWithCharactersInString:@"["];
-    NSString *character;
-     BOOL scannedOpenBracket = [scanner scanCharactersFromSet:openViewIdentifier intoString:&character];
+     BOOL scannedOpenBracket = [scanner scanCharactersFromSet:openViewIdentifier intoString:nil];
      if (!scannedOpenBracket) {
          [[NSException exceptionWithName:NSInternalInconsistencyException reason:@"A view must start with a '['" userInfo:nil] raise];
      }
@@ -497,13 +469,68 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
 -(void)parseViewClose
 {
     NSCharacterSet *closeViewIdentifier = [NSCharacterSet characterSetWithCharactersInString:@"]"];
-    NSString *character;
-    BOOL scannedCloseBracket = [scanner scanCharactersFromSet:closeViewIdentifier intoString:&character];
-    
+    BOOL scannedCloseBracket = [scanner scanCharactersFromSet:closeViewIdentifier intoString:nil];
     if (!scannedCloseBracket) {
         [[NSException exceptionWithName:NSInternalInconsistencyException reason:@"A view must end with a ']'" userInfo:nil] raise];
     }
 }
+
+-(BOOL)isValidIdentifer: (NSString*)identifer
+{
+    
+    NSRegularExpression *cIdentifierRegex = [NSRegularExpression regularExpressionWithPattern:@"^[a-zA-Z_][a-zA-Z0-9_]*$" options:0 error:nil];
+    NSArray *matches = [cIdentifierRegex matchesInString:identifer options:0 range:NSMakeRange(0, identifer.length)];
+    
+    return [matches count] > 0;
+}
+
+-(NSArray*)layoutAttributesForLayoutFormatOptions: (NSLayoutFormatOptions)options {
+    NSMutableArray *attributes = [NSMutableArray array];
+    
+    if (options & NSLayoutFormatAlignAllLeft) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeLeft]];
+    }
+    if (options & NSLayoutFormatAlignAllRight) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeRight]];
+    }
+    if (options & NSLayoutFormatAlignAllTop) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeTop]];
+    }
+    if (options & NSLayoutFormatAlignAllBottom) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeBottom]];
+    }
+    if (options & NSLayoutFormatAlignAllLeading) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeLeading]];
+    }
+    if (options & NSLayoutFormatAlignAllTrailing) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeTrailing]];
+    }
+    if (options & NSLayoutFormatAlignAllCenterX) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeCenterX]];
+    }
+    if (options & NSLayoutFormatAlignAllCenterY) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeCenterY]];
+    }
+    if (options & NSLayoutFormatAlignAllBaseline) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeBaseline]];
+    }
+    if (options & NSLayoutFormatAlignAllFirstBaseline) {
+        [attributes addObject:[NSNumber numberWithInteger:NSLayoutAttributeFirstBaseline]];
+    }
+    
+    if ([attributes count] == 0) {
+        [self failParseWithMessage:@"Unrecognized layout formatting option"];
+    }
+    
+    return attributes;
+}
+
+-(void)failParseWithMessage: (NSString*)parseErrorMessage
+{
+    NSException *parseException = [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"Unable to parse constraint format: %@", parseErrorMessage] userInfo:nil];
+    [parseException raise];
+}
+
 
 -(void)freeObjectOfPredicate: (GSObjectOfPredicate*)predicate
 {

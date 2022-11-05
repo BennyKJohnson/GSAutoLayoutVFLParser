@@ -1,12 +1,12 @@
 #import <XCTest/XCTest.h>
 #import <GSAutoLayoutVFLParser/GSAutoLayoutVFLParser.h>
-//#import "LayoutConstraint.h"
+#import "LayoutConstraint.h"
+// typedef NSLayoutConstraint LayoutConstraint;
 
 @interface GSAutoLayoutVFLParserTests : XCTestCase
 
 @end
 
-typedef NSLayoutConstraint LayoutConstraint;
 
 @implementation GSAutoLayoutVFLParserTests
 {
@@ -70,7 +70,7 @@ typedef NSLayoutConstraint LayoutConstraint;
 -(void)testCanParseViewWithWidthPredicate
 {
     NSView *view = [[NSView alloc] init];
-    NSArray *constraints = [LayoutConstraint constraintsWithVisualFormat:@"[view(50)]" options:0 metrics:@{} views:@{@"view": view}];
+    NSArray *constraints = [LayoutConstraint constraintsWithVisualFormat:@"[_view(50)]" options:0 metrics:@{} views:@{@"_view": view}];
     XCTAssertEqual([constraints count], 1);
     
     NSLayoutConstraint *expectedWidthConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50];
@@ -121,8 +121,8 @@ typedef NSLayoutConstraint LayoutConstraint;
 
 -(void)testCanParseViewWithWidthMetricPredicate
 {
-    NSArray *constraints = [LayoutConstraint constraintsWithVisualFormat:@"[view1(viewWidth)]" options:0 metrics:@{
-        @"viewWidth": [NSNumber numberWithDouble:50]
+    NSArray *constraints = [LayoutConstraint constraintsWithVisualFormat:@"[view1(_viewWidth)]" options:0 metrics:@{
+        @"_viewWidth": [NSNumber numberWithDouble:50]
     } views:@{@"view1": view1}];
     XCTAssertEqual([constraints count], 1);
     
@@ -464,6 +464,33 @@ typedef NSLayoutConstraint LayoutConstraint;
         [self assertConstraint:constraints[0] equalsConstraint:superViewToFindConstraint];
         [self assertConstraint:constraints[1] equalsConstraint:findToFindNextSpacingConstraint];
         [self assertConstraint:constraints[2] equalsConstraint:findNextFieldToSuperViewConstraint];
+    }
+}
+
+-(void)testThrowsExceptionWithInvalidViewName
+{
+    NSArray *invalidViewNames = @[
+        @"1view",
+        @"view$"
+    ];
+    for (NSString *invalidViewName in invalidViewNames) {
+        NSString *format = [NSString stringWithFormat:@"[%@]", invalidViewName];
+        XCTAssertThrowsSpecificNamed([LayoutConstraint constraintsWithVisualFormat:format options:0 metrics:@{} views: @{invalidViewName: view1}], NSException, NSInvalidArgumentException);
+    }
+}
+
+-(void)testThrowsExceptionWithInvalidMetricName
+{
+    NSArray *invalidMetricNames = @[
+        @"1metric",
+        @"metric$"
+    ];
+    
+    for (NSString *invalidName in invalidMetricNames) {
+        NSString *format = [NSString stringWithFormat:@"[view1(%@)]", invalidName];
+        XCTAssertThrowsSpecificNamed([LayoutConstraint constraintsWithVisualFormat:format options:0 metrics:@{
+            invalidName: @(50)
+        } views: @{@"view1": view1}], NSException, NSInvalidArgumentException);
     }
 }
 
