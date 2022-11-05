@@ -14,8 +14,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-testThrowsExceptionWhenInitializingWithEmptyString"
             landmarkType = "7">
             <Locations>
@@ -92,8 +92,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-testCanParseViewWithWidthPredicate"
             landmarkType = "7">
          </BreakpointContent>
@@ -108,8 +108,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "-testThrowsWithoutViewPredicateConstantOrMetricKey"
             landmarkType = "7">
             <Locations>
@@ -171,8 +171,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "-testCanParseConnectionToSuperview"
             landmarkType = "7">
          </BreakpointContent>
@@ -187,8 +187,8 @@
             filePath = "GSAutoLayoutVFLParser/GSAutoLayoutVFLParser.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
             landmarkName = "-parseSimplePredicate"
             landmarkType = "7">
          </BreakpointContent>
@@ -203,8 +203,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "-testCanParseConnectionToSuperview"
             landmarkType = "7">
          </BreakpointContent>
@@ -219,8 +219,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "-testCanParseConnectionToSuperview"
             landmarkType = "7">
          </BreakpointContent>
@@ -235,8 +235,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "-testCanParseWithSpaceBetweenViews"
             landmarkType = "7">
          </BreakpointContent>
@@ -251,8 +251,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "-testCanParseWithStandardSpaceBetwenViews"
             landmarkType = "7">
          </BreakpointContent>
@@ -267,8 +267,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "-testCanParseWithVerticalOrientation"
             landmarkType = "7">
             <Locations>
@@ -345,8 +345,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "-testCanParseWithVerticalOrientation"
             landmarkType = "7">
          </BreakpointContent>
@@ -361,8 +361,8 @@
             filePath = "GSAutoLayoutVFLParser/GSAutoLayoutVFLParser.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "-addViewSpacingConstraint:previousView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -377,8 +377,8 @@
             filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
             landmarkName = "-testCanParseCompleteLineOfLayout"
             landmarkType = "7">
          </BreakpointContent>
@@ -393,9 +393,276 @@
             filePath = "GSAutoLayoutVFLParser/GSAutoLayoutVFLParser.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "-addTrailingToSuperviewConstraint:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "19A777FC-5505-4BC4-8354-F30696B57B12"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "-testCanParseCompleteLineOfLayout"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "086AB793-0E1A-4F29-A71A-EC94D80787A0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "-testCanParseCompleteLineOfLayout"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75AD70F6-5E7A-4C5B-998B-EC48138A8F68"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
+            landmarkName = "-testCanParseFormatOptionsDirectionOrg"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "75AD70F6-5E7A-4C5B-998B-EC48138A8F68 - 4a35e009abbeebd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GSAutoLayoutVFLParserTests testCanParseFormatOptionsDirection]"
+                  moduleName = "GSAutoLayoutVFLParserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminjohnson/Development/GSAutoLayoutVFLParser/GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "476"
+                  endingLineNumber = "476"
+                  offsetFromSymbolStart = "1673">
+               </Location>
+               <Location
+                  uuid = "75AD70F6-5E7A-4C5B-998B-EC48138A8F68 - 4a35e009abbeebd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GSAutoLayoutVFLParserTests testCanParseFormatOptionsDirection]"
+                  moduleName = "GSAutoLayoutVFLParserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminjohnson/Development/GSAutoLayoutVFLParser/GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "476"
+                  endingLineNumber = "476"
+                  offsetFromSymbolStart = "1987">
+               </Location>
+               <Location
+                  uuid = "75AD70F6-5E7A-4C5B-998B-EC48138A8F68 - 4a35e009abbeebd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GSAutoLayoutVFLParserTests testCanParseFormatOptionsDirection]"
+                  moduleName = "GSAutoLayoutVFLParserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminjohnson/Development/GSAutoLayoutVFLParser/GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "476"
+                  endingLineNumber = "476"
+                  offsetFromSymbolStart = "2341">
+               </Location>
+               <Location
+                  uuid = "75AD70F6-5E7A-4C5B-998B-EC48138A8F68 - 4a35e009abbeebd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GSAutoLayoutVFLParserTests testCanParseFormatOptionsDirection]"
+                  moduleName = "GSAutoLayoutVFLParserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminjohnson/Development/GSAutoLayoutVFLParser/GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "476"
+                  endingLineNumber = "476"
+                  offsetFromSymbolStart = "2854">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9202804D-928E-43A5-82B4-FCC6E2B86125"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
+            landmarkName = "-testCanParseFormatOptionsDirectionOrg"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9202804D-928E-43A5-82B4-FCC6E2B86125 - 4a35e009abbeebd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GSAutoLayoutVFLParserTests testCanParseFormatOptionsDirection]"
+                  moduleName = "GSAutoLayoutVFLParserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminjohnson/Development/GSAutoLayoutVFLParser/GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "468"
+                  endingLineNumber = "468"
+                  offsetFromSymbolStart = "938">
+               </Location>
+               <Location
+                  uuid = "9202804D-928E-43A5-82B4-FCC6E2B86125 - 4a35e009abbeebd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GSAutoLayoutVFLParserTests testCanParseFormatOptionsDirection]"
+                  moduleName = "GSAutoLayoutVFLParserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminjohnson/Development/GSAutoLayoutVFLParser/GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "468"
+                  endingLineNumber = "468"
+                  offsetFromSymbolStart = "1020">
+               </Location>
+               <Location
+                  uuid = "9202804D-928E-43A5-82B4-FCC6E2B86125 - 4a35e009abbeebd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GSAutoLayoutVFLParserTests testCanParseFormatOptionsDirection]"
+                  moduleName = "GSAutoLayoutVFLParserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminjohnson/Development/GSAutoLayoutVFLParser/GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "468"
+                  endingLineNumber = "468"
+                  offsetFromSymbolStart = "1737">
+               </Location>
+               <Location
+                  uuid = "9202804D-928E-43A5-82B4-FCC6E2B86125 - 4a35e009abbeebd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GSAutoLayoutVFLParserTests testCanParseFormatOptionsDirection]"
+                  moduleName = "GSAutoLayoutVFLParserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminjohnson/Development/GSAutoLayoutVFLParser/GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "468"
+                  endingLineNumber = "468"
+                  offsetFromSymbolStart = "2172">
+               </Location>
+               <Location
+                  uuid = "9202804D-928E-43A5-82B4-FCC6E2B86125 - 4a35e009abbeebd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GSAutoLayoutVFLParserTests testCanParseFormatOptionsDirection]"
+                  moduleName = "GSAutoLayoutVFLParserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminjohnson/Development/GSAutoLayoutVFLParser/GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "468"
+                  endingLineNumber = "468"
+                  offsetFromSymbolStart = "2283">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "071238B0-1BC0-41CA-A4DC-46CF220C23E2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "464"
+            endingLineNumber = "464"
+            landmarkName = "-testCanParseFormatOptionsDirectionOrg"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2350E93C-7873-430B-80FD-5F7E24C3D6AE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GSAutoLayoutVFLParser/GSAutoLayoutVFLParser.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-isVerticalEdgeFormatLayoutOption:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2B4C3F1-A845-4D81-9834-762CB212B7B7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "456"
+            endingLineNumber = "456"
+            landmarkName = "-testCanParseFormatOptionsDirectionOrg"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3CC6DF7E-19D1-479A-B52E-F4A1001DB7A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GSAutoLayoutVFLParserTests/GSAutoLayoutVFLParserTests.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "466"
+            endingLineNumber = "466"
+            landmarkName = "-testCanParseFormatOptionsDirectionOrg"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

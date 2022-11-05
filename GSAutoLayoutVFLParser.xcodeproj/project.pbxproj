@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F615FB229125CAE00AC09F5 /* LayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F615FB029125CAE00AC09F5 /* LayoutConstraint.h */; };
+		6F615FB329125CAE00AC09F5 /* LayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F615FB129125CAE00AC09F5 /* LayoutConstraint.m */; };
 		6F8E8760290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8E8756290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.framework */; };
 		6F8E8765290DC5AF00DF0F84 /* GSAutoLayoutVFLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E8764290DC5AF00DF0F84 /* GSAutoLayoutVFLParserTests.m */; };
 		6F8E8767290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F8E8759290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +26,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F615FB029125CAE00AC09F5 /* LayoutConstraint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutConstraint.h; sourceTree = "<group>"; };
+		6F615FB129125CAE00AC09F5 /* LayoutConstraint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayoutConstraint.m; sourceTree = "<group>"; };
 		6F8E8756290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GSAutoLayoutVFLParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F8E8759290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GSAutoLayoutVFLParser.h; sourceTree = "<group>"; };
 		6F8E875A290DC5AF00DF0F84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 				6F8E8759290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.h */,
 				6F8E875A290DC5AF00DF0F84 /* Info.plist */,
 				6F8E8770290DC5F900DF0F84 /* GSAutoLayoutVFLParser.m */,
+				6F615FB029125CAE00AC09F5 /* LayoutConstraint.h */,
+				6F615FB129125CAE00AC09F5 /* LayoutConstraint.m */,
 			);
 			path = GSAutoLayoutVFLParser;
 			sourceTree = "<group>";
@@ -97,6 +103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F8E8767290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.h in Headers */,
+				6F615FB229125CAE00AC09F5 /* LayoutConstraint.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F615FB329125CAE00AC09F5 /* LayoutConstraint.m in Sources */,
 				6F8E8771290DC5F900DF0F84 /* GSAutoLayoutVFLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

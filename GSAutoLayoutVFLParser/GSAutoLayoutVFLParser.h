@@ -6,7 +6,7 @@
 //  Copyright © 2022 Benjamin Johnson. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 @interface GSAutoLayoutVFLParser : NSObject
 
@@ -14,8 +14,11 @@
 
 @property (nonatomic, strong) NSDictionary *metrics;
 
--(instancetype)initWithFormat: (NSString*)format options: NSLayoutFormatOptions metrics: (NSDictionary*)metrics views: (NSDictionary*)views;
+@property (nonatomic) NSLayoutFormatOptions options;
+
+-(instancetype)initWithFormat: (NSString*)format options: (NSLayoutFormatOptions)options metrics: (NSDictionary*)metrics views: (NSDictionary*)views;
 
 -(NSArray*)parse;
 
 @end
+
