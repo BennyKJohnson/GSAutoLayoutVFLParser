@@ -194,11 +194,6 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
         secondAttribute = NSLayoutAttributeBottom;
         firstItem = view;
         secondItem = previousView;
-    } else if (!directionOptions || directionOptions & NSLayoutFormatDirectionLeadingToTrailing) {
-        firstAttribute = NSLayoutAttributeLeading;
-        secondAttribute = NSLayoutAttributeTrailing;
-        firstItem = view;
-        secondItem = previousView;
     } else if (directionOptions & NSLayoutFormatDirectionRightToLeft) {
         firstAttribute = NSLayoutAttributeLeft;
         secondAttribute = NSLayoutAttributeRight;
@@ -210,8 +205,10 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
          firstItem = view;
          secondItem = previousView;
     } else {
-        [self failParseWithMessage:@"Unrecognized direction formatting option"];
-        return;
+        firstAttribute = NSLayoutAttributeLeading;
+        secondAttribute = NSLayoutAttributeTrailing;
+        firstItem = view;
+        secondItem = previousView;
     }
     
     NSLayoutConstraint *viewSeparatorConstraint = [NSLayoutConstraint constraintWithItem:firstItem attribute:firstAttribute relatedBy:NSLayoutRelationEqual toItem:secondItem attribute:secondAttribute multiplier:1.0 constant:viewSpacingConstant];

@@ -6,13 +6,13 @@
 //  Copyright © 2022 Benjamin Johnson. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LayoutConstraint : NSObject
 
-
++(NSArray*)constraintsWithVisualFormat:(NSString *)format options:(NSLayoutFormatOptions)opts metrics:(nullable NSDictionary<NSString *, id> *)metrics views:(NSDictionary<NSString *, id> *)views;
 
 @end
 
