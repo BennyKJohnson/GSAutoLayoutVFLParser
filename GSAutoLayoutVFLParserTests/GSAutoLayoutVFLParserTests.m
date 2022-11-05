@@ -105,20 +105,20 @@
     [self performRelationTestWithFormat:@"[view(<=50)]" expectedRelation:NSLayoutRelationLessThanOrEqual];
 }
 
--(void)testCanParseMultipleViewPredicates
-{
-    GSAutoLayoutVFLParser *parser = [[GSAutoLayoutVFLParser alloc] initWithFormat:@"[view1(>=70,<=100)]" options:0 metrics:nil views:@{@"view1": view1}];
-    NSArray *constraints = [parser parse];
-    XCTAssertEqual([constraints count], 2);
-    
-    NSLayoutConstraint *expectedGTEWidthConstraint = [NSLayoutConstraint constraintWithItem:view1 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:70];
-    
-    NSLayoutConstraint *expectedLTEWidthConstraint =
-    [NSLayoutConstraint constraintWithItem:view1 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
-    
-    [self assertConstraint:constraints[0] equalsConstraint:expectedGTEWidthConstraint];
-    [self assertConstraint:constraints[1] equalsConstraint:expectedLTEWidthConstraint];
-}
+//-(void)testCanParseMultipleViewPredicates
+//{
+//    GSAutoLayoutVFLParser *parser = [[GSAutoLayoutVFLParser alloc] initWithFormat:@"[view1(>=70,<=100)]" options:0 metrics:nil views:@{@"view1": view1}];
+//    NSArray *constraints = [parser parse];
+//    XCTAssertEqual([constraints count], 2);
+//    
+//    NSLayoutConstraint *expectedGTEWidthConstraint = [NSLayoutConstraint constraintWithItem:view1 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:70];
+//    
+//    NSLayoutConstraint *expectedLTEWidthConstraint =
+//    [NSLayoutConstraint constraintWithItem:view1 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
+//    
+//    [self assertConstraint:constraints[0] equalsConstraint:expectedGTEWidthConstraint];
+//    [self assertConstraint:constraints[1] equalsConstraint:expectedLTEWidthConstraint];
+//}
 
 
 -(void)testCanParseViewWithWidthMetricPredicate

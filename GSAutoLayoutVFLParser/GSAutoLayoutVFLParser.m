@@ -52,7 +52,7 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
 {
     [self parseOrientation];
     NSNumber *spacingConstant = [self parseLeadingSuperViewConnection];
-    NSView *previousView;
+    NSView *previousView = nil;
 
     while (![scanner isAtEnd]) {
         NSArray *viewConstraints = [self parseView];
@@ -61,7 +61,7 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
             createLeadingConstraintToSuperview = NO;
         }
              
-        if (previousView) {
+        if (previousView != nil) {
             [self addViewSpacingConstraint:spacingConstant previousView:previousView];
             [self addFormattingConstraints: previousView];
         }
@@ -312,13 +312,13 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
 
 -(NSNumber*)parseSimplePredicate
 {
-    CGFloat constant;
-    BOOL scanConstantResult = [scanner scanDouble:&constant];
+    float constant;
+    BOOL scanConstantResult = [scanner scanFloat:&constant];
     if (scanConstantResult) {
         return [NSNumber numberWithDouble:constant];
     } else {
         NSString *metricName = [self parseMetricName];
-        if (!metricName) {
+        if (metricName == nil) {
             return nil;
         }
         NSNumber *metric = [self resolveMetricWithIdentifier:metricName];
@@ -329,7 +329,7 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
 -(NSView*)parseViewName
 {
     NSString *viewName = [self parseIdentifier];
-    if (!viewName) {
+    if (viewName == nil) {
         [self failParseWithMessage:@"Failed to parse view name"];
     }
     return [self resolveViewWithIdentifier:viewName];
@@ -361,9 +361,9 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
 
 -(NSLayoutConstraint*)createConstraintFromParsedPredicate: (GSObjectOfPredicate*)predicate
 {
-    NSLayoutConstraint *constraint;
+    NSLayoutConstraint *constraint = nil;
     NSLayoutAttribute attribute = isVerticalOrientation ? NSLayoutAttributeHeight : NSLayoutAttributeWidth;
-    if (predicate->view) {
+    if (predicate->view != nil) {
         constraint = [NSLayoutConstraint constraintWithItem:view attribute:attribute relatedBy:predicate->relation toItem:predicate->view attribute:attribute multiplier:1.0 constant:predicate->constant];
     } else {
         constraint = [NSLayoutConstraint constraintWithItem:view attribute:attribute relatedBy:predicate->relation toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:predicate->constant];
@@ -381,7 +381,7 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
     NSLayoutRelation relation = [self parseRelation];
     
     CGFloat parsedConstant;
-    NSView *predicatedView;
+    NSView *predicatedView = nil;
     BOOL scanConstantResult = [scanner scanDouble:&parsedConstant];
     if (!scanConstantResult) {
         NSString *identiferName = [self parseIdentifier];
@@ -474,7 +474,7 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
 
 -(NSString*)parseIdentifier
 {
-    NSString *identifier;
+    NSString *identifier = nil;
     [scanner scanCharactersFromSet:[NSCharacterSet alphanumericCharacterSet] intoString:&identifier];
     
     return identifier;
@@ -482,7 +482,7 @@ NSInteger const GS_DEFAULT_SUPERVIEW_SPACING = 20;
 
 -(NSString*)parseMetricName
 {
-    NSString *identifier;
+    NSString *identifier = nil;
     [scanner scanCharactersFromSet:[NSCharacterSet alphanumericCharacterSet] intoString:&identifier];
     return identifier;
 }

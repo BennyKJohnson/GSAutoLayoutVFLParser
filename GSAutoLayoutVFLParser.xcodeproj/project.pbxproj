@@ -12,7 +12,7 @@
 		6F8E8760290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8E8756290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.framework */; };
 		6F8E8765290DC5AF00DF0F84 /* GSAutoLayoutVFLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E8764290DC5AF00DF0F84 /* GSAutoLayoutVFLParserTests.m */; };
 		6F8E8767290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F8E8759290DC5AF00DF0F84 /* GSAutoLayoutVFLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F8E8771290DC5F900DF0F84 /* GSAutoLayoutVFLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E8770290DC5F900DF0F84 /* GSAutoLayoutVFLParser.m */; };
+		6F8E8771290DC5F900DF0F84 /* GSAutoLayoutVFLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E8770290DC5F900DF0F84 /* GSAutoLayoutVFLParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
